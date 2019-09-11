@@ -20,6 +20,6 @@ class Image extends Model
     
     //relación many to one
     public function user(){
-        return $this->belongsTo('App\User', 'usuario_id');
+        return $this->belongsTo('App\User', 'user_id');
     }
 }
