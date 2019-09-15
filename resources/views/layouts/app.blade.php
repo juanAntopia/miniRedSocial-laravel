@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -56,6 +57,10 @@
 
                             <li class="nav-item">
                                 <a href="" class="nav-link">Subir Imagen</a>
+                            </li>
+
+                            <li class="nav-item">
+                                @include('includes.avatar')
                             </li>
 
                             <li class="nav-item dropdown">

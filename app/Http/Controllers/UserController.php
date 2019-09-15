@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     //method configuration
     public function config(){
         return view('user.config');
@@ -57,5 +63,10 @@ class UserController extends Controller
         $user->update();
 
         return redirect()->route('config')->with(['message' => 'Usuario actualizado correctamente']);
+    }
+
+    public function getImage($filename){
+        $file = Storage::disk('users')->get($filename);
+        return new Response($file, 200);
     }
 }
