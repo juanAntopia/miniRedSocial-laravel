@@ -14,6 +14,7 @@
                         </div>
                     @endif
 
+                    @include('includes.message')
                     You are logged in!
                 </div>
             </div>

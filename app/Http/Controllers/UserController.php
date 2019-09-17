@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
+    //method for authenticate the user
     public function __construct()
     {
         $this->middleware('auth');
