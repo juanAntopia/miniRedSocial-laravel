@@ -15,7 +15,7 @@ class ImageController extends Controller
         $this->middleware('auth');
     }
 
-    //method for return a view create image
+    //method for return a view "create image"
     public function create(){
         return view('image.create');
     }
