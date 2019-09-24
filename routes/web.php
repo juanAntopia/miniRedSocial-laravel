@@ -50,3 +50,4 @@ Route::post('/user/update', 'UserController@update')->name('user.update');
 Route::get('/subir-imagen', 'ImageController@create')->name('image.create');
 Route::post('/save', 'ImageController@save')->name('image.save');
 Route::get('/image/{id}', 'ImageController@detail')->name('image.detail');
+Route::post('comment/save', 'CommentController@save')->name('comment.save');
