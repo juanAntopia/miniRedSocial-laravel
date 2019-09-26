@@ -14,7 +14,7 @@ class Comment extends Model
     }
 
     //relación Many to one
-    public function images(){
+    public function image(){
         return $this->belongsTo('App\Image', 'image_id');  
     }
 }

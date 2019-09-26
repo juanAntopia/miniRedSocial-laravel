@@ -39,6 +39,7 @@
     //return view('welcome');
 //});
 
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -50,4 +51,6 @@ Route::post('/user/update', 'UserController@update')->name('user.update');
 Route::get('/subir-imagen', 'ImageController@create')->name('image.create');
 Route::post('/save', 'ImageController@save')->name('image.save');
 Route::get('/image/{id}', 'ImageController@detail')->name('image.detail');
-Route::post('comment/save', 'CommentController@save')->name('comment.save');
+Route::post('/comment/save', 'CommentController@save')->name('comment.save');
+Route::get('/comment/delete/{id}', 'CommentController@delete')->name('comment.delete');
+Route::get('/like/{image_id}', 'LikeController@like')->name('like.save');
