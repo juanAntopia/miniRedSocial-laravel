@@ -41,17 +41,27 @@
 
 
 Auth::routes();
-
+//route for home
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/configuration', 'UserController@config')->name('config');
+//route for the user avatar 
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
-Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');
+
+//routes for the configuration of the user account
+Route::get('/configuration', 'UserController@config')->name('config');
 Route::post('/user/update', 'UserController@update')->name('user.update');
+
+//routes for upload, view, save and detail image
+Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');
 Route::get('/subir-imagen', 'ImageController@create')->name('image.create');
 Route::post('/save', 'ImageController@save')->name('image.save');
 Route::get('/image/{id}', 'ImageController@detail')->name('image.detail');
+
+//routes for save and delete comments
 Route::post('/comment/save', 'CommentController@save')->name('comment.save');
 Route::get('/comment/delete/{id}', 'CommentController@delete')->name('comment.delete');
+
+//routes for give like and dislike
 Route::get('/like/{image_id}', 'LikeController@like')->name('like.save');
 Route::get('/dislike/{image_id}', 'LikeController@dislike')->name('dislike.delete');
+Route::get('/likes', 'LikeController@index')->name('likes');
