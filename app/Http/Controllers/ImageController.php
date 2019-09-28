@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Image;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use App\Image;
+use App\Comment;
+use App\Like;
 
 class ImageController extends Controller
 {
@@ -67,4 +69,63 @@ class ImageController extends Controller
             'image' => $image
         ]);
     }
+
+    //function delete image
+    public function delete($id){
+        $user = \Auth::user();
+        $image = Image::find($id);
+        $comments = Comment::where('image_id', $id)->get();
+        $likes = Like::where('image_id', $id)->get();
+        
+        
+        if($user && $image->user->id == $user->id){
+            //delete comments
+            if($comments && count($comments)>=1){
+                foreach($comments as $comment){
+                    $comment->delete();
+                }
+            }
+
+            //delete likes
+            if ($likes && count($likes) >= 1) {
+                foreach ($likes as $like) {
+                    $like->delete();
+                }
+            }
+
+            //delete files of the image
+            Storage::disk('images')->delete($image->image_path);
+
+            //delete register of image
+            $image->delete();
+
+            $message = array('message' => 'La imagen se ha borrado correctamente!!');
+        }else{
+            $message = array('message' => 'La imagen no se ha podido borrar');            
+        }
+
+        return redirect()->route('home')->with($message);
+    }//end function delete
+
+    public function edit($id){
+        $user = \Auth::user();
+        $image = Image::find($id);
+        
+        if($user && $image && $image->user->id == $user->id){
+            return view('image.edit', [
+                'image' => $image
+            ]);
+        }else{
+            return redirect()->route('home');
+        }
+    }//end function edit
+
+    public function update(Request $request){
+        $image_id = $request->input('image_id');
+        $description = $request->input('description');
+
+        var_dump($image_id);
+        var_dump($description);
+        die();
+    }    
 }
