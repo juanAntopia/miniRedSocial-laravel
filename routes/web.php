@@ -54,11 +54,11 @@ Route::post('/user/update', 'UserController@update')->name('user.update');
 //routes for upload, view, save, delete and detail image
 Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');
 Route::get('/subir-imagen', 'ImageController@create')->name('image.create');
-Route::post('/save', 'ImageController@save')->name('image.save');
+Route::post('image/save', 'ImageController@save')->name('image.save');
 Route::get('/image/{id}', 'ImageController@detail')->name('image.detail');
 Route::get('/image/delete/{id}', 'ImageController@delete')->name('image.delete');
 Route::get('/image/edit/{id}', 'ImageController@edit')->name('image.edit');
-Route::post('image/update/{id}', 'ImageController@update')->name('image.update');
+Route::post('image/update', 'ImageController@update')->name('image.update');
 
 //routes for save and delete comments
 Route::post('/comment/save', 'CommentController@save')->name('comment.save');
@@ -69,5 +69,6 @@ Route::get('/like/{image_id}', 'LikeController@like')->name('like.save');
 Route::get('/dislike/{image_id}', 'LikeController@dislike')->name('dislike.delete');
 Route::get('/likes', 'LikeController@index')->name('likes');
 
-//route for user profile
+//route for users profile
 Route::get('/profile/{id}', 'UserController@profile')->name('profile');
+Route::get('/gente', 'UserController@index')->name('user.index');

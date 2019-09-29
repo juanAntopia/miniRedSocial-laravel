@@ -19,16 +19,18 @@
                             <div class="col-md-7">
                                 @if ($image->user->image)
                                     <div class="container-avatar">
-                                        <img src="{{ route('user.avatar', ['filename'  => $image->user->image]) }}" alt="" class="avatar img-responsive">
+                                        <img src="{{ route('image.file', ['filename' => $image->image_path]) }}" alt="" class="avatar img-responsive">
                                     </div>
                                 @endif
 
-                                <input type="file" name="image_path" id="image_path" class="form-control" required>
-
-                                @if ($errors->has('image_path'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('image_path') }}</strong>
-                                    </span>
+                                <input type="file" name="image_path" id="image_path" class="form-control {{ $errors->any() ? 'is-invalid' : '' }}" required>
+                                
+                                @if ($errors->any())
+                                    @foreach ($errors->all() as $error)
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $error}}</strong>
+                                        </span> 
+                                    @endforeach
                                 @endif
                             </div>
                         </div>
@@ -38,7 +40,7 @@
 
                             <div class="col-md-7">
                                 <textarea name="description" id="description" cols="30" rows="10" required
-                                    class="form-control">{{ $image->description }}</textarea>
+                                class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}">{{ $image->description }}</textarea>
 
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback">
