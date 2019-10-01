@@ -107,3 +107,8 @@ form .avatar{
 .profile-user .container-avatar img{
     height: 100%;
 }
+
+.btn-search{
+    margin-left: 0px;
+    padding-left: 0px;
+}

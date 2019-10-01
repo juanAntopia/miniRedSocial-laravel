@@ -52,4 +52,10 @@ window.addEventListener('load', function(){
         });
     }
     dislike();
+
+    //Search
+    $('#search-form').submit(function() {
+        $(this).attr('action', url + 'gente/' + $('#search-form #search').val());
+    });
+
 });
